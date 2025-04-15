@@ -2,7 +2,9 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import requests
 import os
+import json
 
+# Token from environment variable
 BOT_TOKEN = os.getenv("7859871122:AAGDSovZBiSGS-HAmPZZF9h1lcLflED0yYM")
 
 async def gen_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -18,13 +20,18 @@ async def gen_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if response.status_code == 200:
             data = response.json()
             if 'token' in data:
-                await update.message.reply_text(f"Token: {data['token']}")
+                # Format JSON output
+                token_json = {
+                    "token": data['token']
+                }
+                formatted = json.dumps(token_json, indent=4)
+                await update.message.reply_text(f"<pre>{formatted}</pre>", parse_mode="HTML")
             else:
-                await update.message.reply_text("Token not found in response.")
+                await update.message.reply_text("❌ Token not found in response.")
         else:
-            await update.message.reply_text("API request failed. Check UID/Password.")
+            await update.message.reply_text("❌ API request failed. Check UID/Password.")
     except Exception as e:
-        await update.message.reply_text(f"Error: {e}")
+        await update.message.reply_text(f"⚠️ Error: {e}")
 
 if __name__ == '__main__':
     app = ApplicationBuilder().token(BOT_TOKEN).build()

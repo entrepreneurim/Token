@@ -5,7 +5,7 @@ import os
 import json
 
 # Token from environment variable
-BOT_TOKEN = os.getenv("8006068020:AAEvGfxyMtv7wBA-Bq4r7o_W890FylJ05cc")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 async def gen_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:

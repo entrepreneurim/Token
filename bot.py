@@ -4,7 +4,7 @@ import requests
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, CallbackQueryHandler
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "your-bot-token")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "7344541156:AAHPKHq-d4zJs2XQS2TbfyAQeK8jyx4txBo")
 FORCE_JOIN_CHANNEL = "AxomBotz"
 
 # Check if user is a member of the channel
